@@ -10,25 +10,24 @@ public static void main(String[] args) {
     SpringApplication app =
             new SpringApplication(SmartWasteCollectionApplication.class);
 
-    app.addInitializers(context -> {
-        var env = context.getEnvironment();
+  app.addInitializers(context -> {
+    var env = context.getEnvironment();
 
-        System.out.println("DB_URL present: "
-                + (env.getProperty("DB_URL") != null));
+    System.out.println("Config location: "
+            + env.getProperty("spring.config.location"));
 
-        System.out.println("Datasource URL configured: "
-                + (env.getProperty("spring.datasource.url") != null));
+    System.out.println("Config additional location: "
+            + env.getProperty("spring.config.additional-location"));
 
-        System.out.println("Property sources:");
+    System.out.println("Config name: "
+            + env.getProperty("spring.config.name", "application"));
 
-        env.getPropertySources().forEach(source -> {
-            if (source.containsProperty("spring.datasource.url")) {
-                System.out.println(
-                        "Datasource property found in: " + source.getName()
-                );
-            }
-        });
-    });
+    System.out.println("Datasource property sources:");
+
+    env.getPropertySources().forEach(source ->
+        System.out.println(source.getName())
+    );
+});
 
     app.run(args);
 }
