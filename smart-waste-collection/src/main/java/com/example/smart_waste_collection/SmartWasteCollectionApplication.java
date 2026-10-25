@@ -6,21 +6,28 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class SmartWasteCollectionApplication {
-
-	public static void main(String[] args) {
+public static void main(String[] args) {
     SpringApplication app =
             new SpringApplication(SmartWasteCollectionApplication.class);
 
     app.addInitializers(context -> {
-        String dbUrl = context.getEnvironment().getProperty("DB_URL");
-        String datasourceUrl = context.getEnvironment()
-                .getProperty("spring.datasource.url");
+        var env = context.getEnvironment();
 
         System.out.println("DB_URL present: "
-                + (dbUrl != null && !dbUrl.isBlank()));
+                + (env.getProperty("DB_URL") != null));
 
         System.out.println("Datasource URL configured: "
-                + (datasourceUrl != null && !datasourceUrl.isBlank()));
+                + (env.getProperty("spring.datasource.url") != null));
+
+        System.out.println("Property sources:");
+
+        env.getPropertySources().forEach(source -> {
+            if (source.containsProperty("spring.datasource.url")) {
+                System.out.println(
+                        "Datasource property found in: " + source.getName()
+                );
+            }
+        });
     });
 
     app.run(args);
