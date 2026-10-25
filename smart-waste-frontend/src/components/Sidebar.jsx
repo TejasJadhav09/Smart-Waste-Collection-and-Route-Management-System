@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../api";
 function getUserRole() {
     const token = localStorage.getItem("token");
 
@@ -47,7 +48,7 @@ useEffect(() => {
     const fetchUnreadCount = async () => {
         try {
             const response = await fetch(
-                `http://localhost:8080/notifications/user/${userId}`,
+                `${API_BASE_URL}/notifications/user/${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Drivers.css";
-
+import API_BASE_URL from "../api";
 function getUserRole() {
     const token = localStorage.getItem("token");
 
@@ -70,7 +70,7 @@ const [adding, setAdding] = useState(false);
                     localStorage.getItem("token");
 
                 const response = await fetch(
-                    "http://localhost:8080/drivers",
+                    `${API_BASE_URL}/drivers`,
                     {
                         headers: {
                             Authorization:
@@ -137,7 +137,7 @@ const addDriver = async (event) => {
         // ==============================
 
         const userResponse = await fetch(
-            "http://localhost:8080/users",
+            `${API_BASE_URL}/users`,
             {
                 method: "POST",
                 headers: {
@@ -170,7 +170,7 @@ const addDriver = async (event) => {
         // ==============================
 
         const driverResponse = await fetch(
-            "http://localhost:8080/drivers",
+            `${API_BASE_URL}/drivers`,
             {
                 method: "POST",
                 headers: {

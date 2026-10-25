@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../api";
 
-const API = "http://localhost:8080";
+const API = API_BASE_URL;
 
 export default function CreateRequest({ onCreated }) {
   const [bins, setBins] = useState([]);

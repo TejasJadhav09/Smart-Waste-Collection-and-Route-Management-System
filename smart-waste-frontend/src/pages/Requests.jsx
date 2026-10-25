@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Requests.css";
 import CreateRequest from "../components/CreateRequest";
-
+import API_BASE_URL from "../api";
 
 function getUserRole() {
     const token = localStorage.getItem("token");
@@ -58,7 +58,7 @@ const role = getUserRole();
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-            "http://localhost:8080/collection-requests",
+            `${API_BASE_URL}/collection-requests`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -85,7 +85,7 @@ const role = getUserRole();
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-            "http://localhost:8080/drivers",
+            `${API_BASE_URL}/drivers`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -112,7 +112,7 @@ const role = getUserRole();
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-            "http://localhost:8080/vehicles",
+            `${API_BASE_URL}/vehicles`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -133,7 +133,7 @@ const role = getUserRole();
     const loadRoutes = async () => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch("http://localhost:8080/routes", {
+    const response = await fetch(`${API_BASE_URL}/routes`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -244,7 +244,7 @@ const role = getUserRole();
         try {
 
             const response = await fetch(
-                `http://localhost:8080/assignments/${requestId}?driverId=${driverId}&vehicleId=${vehicleId}`,
+                `${API_BASE_URL}/assignments/${requestId}?driverId=${driverId}&vehicleId=${vehicleId}`,
                 {
                     method: "PUT",
 
@@ -328,7 +328,7 @@ const role = getUserRole();
         try {
 
             const response = await fetch(
-                `http://localhost:8080/collection-requests/${requestId}/start`,
+                `${API_BASE_URL}/collection-requests/${requestId}/start`,
                 {
                     method: "PUT",
 
@@ -383,7 +383,7 @@ const role = getUserRole();
         try {
 
             const response = await fetch(
-                `http://localhost:8080/collection-requests/${requestId}/complete`,
+                `${API_BASE_URL}/collection-requests/${requestId}/complete`,
                 {
                     method: "PUT",
 

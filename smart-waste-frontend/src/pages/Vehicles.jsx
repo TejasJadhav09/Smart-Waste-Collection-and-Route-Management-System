@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./vehicles.css";
-
+import API_BASE_URL from "../api";
 function getUserRole() {
     const token = localStorage.getItem("token");
 
@@ -57,7 +57,7 @@ function Vehicles() {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/vehicles",
+                `${API_BASE_URL}/vehicles`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -113,7 +113,7 @@ function Vehicles() {
         try {
 
             const response = await fetch(
-                "http://localhost:8080/vehicles",
+                `${API_BASE_URL}/vehicles`,
                 {
                     method: "POST",
 

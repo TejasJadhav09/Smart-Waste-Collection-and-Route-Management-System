@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Dashboard.css";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
-
+import API_BASE_URL from "../api";
 function getUserRole() {
     const token = localStorage.getItem("token");
 
@@ -35,7 +35,7 @@ useEffect(() => {
     const loadDashboard = async () => {
         try {
             const response = await fetch(
-                "http://localhost:8080/dashboard/summary",
+                `${API_BASE_URL}/dashboard/summary`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -67,7 +67,7 @@ useEffect(() => {
                 }
 
                 const requestsResponse = await fetch(
-                    `http://localhost:8080/collection-requests/driver/${driverId}`,
+                    `${API_BASE_URL}/collection-requests/driver/${driverId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

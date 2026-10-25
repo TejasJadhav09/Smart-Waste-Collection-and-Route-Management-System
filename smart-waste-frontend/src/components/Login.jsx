@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import "./Auth.css";
+import API_BASE_URL from "../api";
 
 function Login({ onLogin }) {
     const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ function Login({ onLogin }) {
 
         try {
             const response = await fetch(
-                "http://localhost:8080/auth/login",
+                `${API_BASE_URL}/auth/login`,
                 {
                     method: "POST",
                     headers: {
@@ -25,34 +26,37 @@ function Login({ onLogin }) {
                 }
             );
 
-          const responseText = await response.text();
+            const responseText = await response.text();
 
-if (!response.ok) {
-    let errorMessage = "Login failed. Please check your credentials.";
+            if (!response.ok) {
+                let errorMessage =
+                    "Login failed. Please check your credentials.";
 
-    try {
-        const errorData = JSON.parse(responseText);
-        errorMessage =
-            errorData.message ||
-            errorData.error ||
-            errorMessage;
-    } catch {
-        if (responseText) {
-            errorMessage = responseText;
-        }
-    }
+                try {
+                    const errorData = JSON.parse(responseText);
+                    errorMessage =
+                        errorData.message ||
+                        errorData.error ||
+                        errorMessage;
+                } catch {
+                    if (responseText) {
+                        errorMessage = responseText;
+                    }
+                }
 
-    throw new Error(
-        errorMessage === "Bad credentials"
-            ? "Invalid email or password. Please try again."
-            : errorMessage
-    );
-}
+                throw new Error(
+                    errorMessage === "Bad credentials"
+                        ? "Invalid email or password. Please try again."
+                        : errorMessage
+                );
+            }
 
-const token = responseText;
+            const token = responseText;
 
             if (!token.trim()) {
-                throw new Error("The server returned an empty login token.");
+                throw new Error(
+                    "The server returned an empty login token."
+                );
             }
 
             localStorage.setItem("token", token);

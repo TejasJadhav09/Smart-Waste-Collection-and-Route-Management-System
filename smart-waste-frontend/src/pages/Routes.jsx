@@ -6,11 +6,11 @@ import "./Routes.css";
 
 
 
+import API_BASE_URL from "../api";
 
 
 
-
-const API = "http://localhost:8080";
+const API = API_BASE_URL;
 
 
 
@@ -1787,8 +1787,8 @@ if (status === "COMPLETED" && role === "DRIVER") {
             try {
 
                 const response = await fetch(
-                    `http://localhost:8080/driver-locations/${driverId}` +
-                    `?latitude=${latitude}&longitude=${longitude}`,
+                 `${API}/driver-locations/${driverId}` +
+`?latitude=${latitude}&longitude=${longitude}`,
                     {
                         method: "POST",
                         headers: {

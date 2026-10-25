@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Notifications.css";
+import API_BASE_URL from "../api";
+const API = API_BASE_URL;
 
-const API = "http://localhost:8080";
 
 function getUserFromToken() {
     const token = localStorage.getItem("token");

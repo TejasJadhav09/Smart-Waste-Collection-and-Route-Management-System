@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Bins.css";
-
+import API_BASE_URL from "../api";
 function getUserRole() {
     const token = localStorage.getItem("token");
 
@@ -66,7 +66,7 @@ const [newBin, setNewBin] = useState({
             }
 
             const response = await fetch(
-                "http://localhost:8080/bins",
+                `${API_BASE_URL}/bins`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -109,7 +109,7 @@ const [newBin, setNewBin] = useState({
     try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch("http://localhost:8080/zones", {
+        const response = await fetch(`${API_BASE_URL}/zones`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -290,7 +290,7 @@ const [newBin, setNewBin] = useState({
                 const token = localStorage.getItem("token");
 
                 const response = await fetch(
-                    "http://localhost:8080/bins",
+                    `${API_BASE_URL}/bins`,
                     {
                         method: "POST",
                         headers: {
@@ -329,7 +329,7 @@ const [newBin, setNewBin] = useState({
                 });
 
                 const refreshResponse = await fetch(
-                    "http://localhost:8080/bins",
+                    `${API_BASE_URL}/bins`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

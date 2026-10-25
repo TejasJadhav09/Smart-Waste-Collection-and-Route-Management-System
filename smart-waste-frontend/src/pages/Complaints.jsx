@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../api";
 import "./Complaints.css";
 
-const API = "http://localhost:8080";
+const API = API_BASE_URL;
 
 function getUserFromToken() {
     const token = localStorage.getItem("token");

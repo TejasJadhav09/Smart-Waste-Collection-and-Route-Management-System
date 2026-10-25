@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../api";
 import "./DriverRequests.css";
+
+const API = API_BASE_URL;
 
 function getDriverId() {
     const token = localStorage.getItem("token");
@@ -36,7 +39,7 @@ function DriverRequests() {
         try {
 
             const response = await fetch(
-                `http://localhost:8080/collection-requests/driver/${driverId}`,
+                `${API}/collection-requests/driver/${driverId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -107,7 +110,7 @@ function DriverRequests() {
 
             try {
                 const response = await fetch(
-                    `http://localhost:8080/driver-locations/${driverId}?latitude=${latitude}&longitude=${longitude}`,
+                    `${API}/driver-locations/${driverId}?latitude=${latitude}&longitude=${longitude}`,
                     {
                         method: "POST",
                         headers: {
@@ -148,7 +151,7 @@ function DriverRequests() {
         try {
 
             const response = await fetch(
-                `http://localhost:8080/collection-requests/${requestId}/start`,
+                `${API}/collection-requests/${requestId}/start`,
                 {
                     method: "PUT",
                     headers: {
@@ -197,7 +200,7 @@ function DriverRequests() {
         try {
 
             const response = await fetch(
-                `http://localhost:8080/collection-requests/${requestId}/complete`,
+                `${API}/collection-requests/${requestId}/complete`,
                 {
                     method: "PUT",
                     headers: {

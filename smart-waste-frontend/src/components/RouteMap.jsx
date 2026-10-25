@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API_BASE_URL from "../api";
 import {
     MapContainer,
     TileLayer,
@@ -54,7 +55,7 @@ function RouteMap({ stops = [], driverId }) {
             const token = localStorage.getItem("token");
 
             const response = await fetch(
-                `http://localhost:8080/driver-locations/${driverId}/latest`,
+                `${API_BASE_URL}/driver-locations/${driverId}/latest`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -153,7 +154,7 @@ useEffect(() => {
                 });
 
                 const response = await fetch(
-                    `http://localhost:8080/routes/road-route?${params}`,
+                    `${API_BASE_URL}/routes/road-route?${params}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
